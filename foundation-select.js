@@ -2,12 +2,18 @@
  
   $.fn.foundationSelect = function() {
 
+    // Check to see if custom dropdowns have already been drawn
     if (!$('.custom-dropdown-area').length) {
 
+      // If custom dropdowns haven't been drawn, build and inset them
       return this.each(function () {
         select = $(this)
         selectId = select.attr('id');
-        selectPrompt = select.data('prompt');
+        if (select.data('prompt')) {
+          selectPrompt = select.data('prompt');
+        } else {
+          selectPrompt = "Choose...";
+        }
         options = '';
         select.find('option').each( function (index) {
           options += '<li data-value="' + this.value + '">' + $(this).html() + '</li>'
@@ -22,6 +28,7 @@
     };
   };
 
+  // setup a listener to deal with custom dropdown clicks.
   $(document).on('click', '.custom-dropdown-area li', function () {
     text = $(this).html();
     value = $(this).data('value');
