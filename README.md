@@ -1,7 +1,7 @@
 foundation-select
 =================
 
-jQuery plugin for custom select inputs in Zurb Foundation 5 using Foundation Dropdown plugin.
+jQuery plugin for custom `<select>` select inputs in Zurb [Foundation](http://foundation.zurb.com/) 5 using Foundation [Dropdowns plugin](http://foundation.zurb.com/docs/components/dropdown.html).
 
 ## How to
 
