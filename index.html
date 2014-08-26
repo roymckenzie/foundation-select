@@ -3,69 +3,134 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Foundation-select by roymckenzie</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="stylesheets/foundation.css" />
+    <link rel="stylesheet" href="stylesheets/foundation-select.css" />
+    <link rel="stylesheet" href="stylesheets/styles.css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="javascripts/vendor/modernizr.js"></script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Foundation-select</h1>
-        <p>jQuery plugin for custom select inputs in Zurb Foundation 5 using Foundation Dropdown plugin</p>
 
-        <p class="view"><a href="https://github.com/roymckenzie/foundation-select">View the Project on GitHub <small>roymckenzie/foundation-select</small></a></p>
+    <div class="row">
+      <div class="small-4 columns">
+        <header>
+          <h1>Foundation-select</h1>
+
+          <p>jQuery plugin for custom select inputs in Zurb Foundation 5 using Foundation Dropdowns plugin</p>
+
+          <p class="view"><a href="https://github.com/roymckenzie/foundation-select">View the Project on GitHub</a></p>
 
 
-        <ul>
-          <li><a href="https://github.com/roymckenzie/foundation-select/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/roymckenzie/foundation-select/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/roymckenzie/foundation-select">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          <ul>
+            <li><a href="https://github.com/roymckenzie/foundation-select/zipball/master">Download <strong>ZIP File</strong></a></li>
+            <li><a href="https://github.com/roymckenzie/foundation-select/tarball/master">Download <strong>TAR Ball</strong></a></li>
+            <li><a href="https://github.com/roymckenzie/foundation-select">View On <strong>GitHub</strong></a></li>
+          </ul>
+        </header>
+      </div>
+      <div class="small-8 columns">
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <section>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+          <h3>How To</h3>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+          <hr>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+          <p>Setting up custom <code>&lt;select&gt;</code>s with Foundation using <code>foundation-select.js</code> is relatively easy.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+          <h4>Step 1</h4>
+          <p>Include <code>foundation-select.css</code> in your <code>&lt;head&gt;</code></p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+          <h4>Step 2</h4>
+          <p>Include <code>foundation-select.js</code> before your <code>&lt;/body&gt;</code></p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+          <h4>Step 3</h4>
+          <p>Include <code class="js">$('select').foundationSelect();</code> before <code class="js">$(document).foundation();</code></p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+          <h3>Examples</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+          <hr>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+          <h4>Single selection &lt;select&gt; </h4>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/roymckenzie">roymckenzie</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+          <p>
+            <select id="single-bsg-pilot">
+              <option value="husker">Husker</option>
+              <option value="starbuck">Starbuck</option>
+              <option value="hotdog">Hot Dog</option>
+              <option value="apollo">Apollo</option>
+            </select>
+
+            <pre><code class="html">&lt;select id=&quot;single-bsg-pilot&quot;&gt;
+  &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+  &lt;option value=&quot;starbuck&quot;&gt;Starbuck&lt;/option&gt;
+  &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+  &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+          </p>
+
+          <h4>Single selection &lt;select&gt; with prompt</h4>
+
+          <p>
+
+            <select id="single-bsg-pilot-prompt" data-prompt="Choose the best BSG pilot">
+              <option value="husker">Husker</option>
+              <option value="starbuck">Starbuck</option>
+              <option value="hotdog">Hot Dog</option>
+              <option value="apollo">Apollo</option>
+            </select>
+
+            <pre><code class="html">&lt;select id=&quot;single-bsg-pilot-prompt&quot; data-prompt=&quot;Choose the best BSG pilot&quot;&gt;
+  &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+  &lt;option value=&quot;starbuck&quot;&gt;Starbuck&lt;/option&gt;
+  &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+  &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+          </p>
+
+
+          <h4>Multiple selection &lt;select&gt; with prompt</h4>
+
+          <p>
+
+            <select id="multiple-bsg-pilots" multiple data-prompt="Choose the top BSG pilots">
+              <option value="husker">Husker</option>
+              <option value="starbuck">Starbuck</option>
+              <option value="hotdog">Hot Dog</option>
+              <option value="apollo">Apollo</option>
+            </select>
+
+            <pre><code class="html">&lt;select id=&quot;multiple-bsg-pilots&quot; multiple data-prompt=&quot;Choose the top BSG pilots&quot;&gt;
+  &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+  &lt;option value=&quot;starbuck&quot;&gt;Starbuck&lt;/option&gt;
+  &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+  &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+          </p>
+
+        </section>
+      </div>
     </div>
+
     <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/vendor/jquery.js"></script>
+    <script src="javascripts/foundation.min.js"></script>
+    <script src="javascripts/foundation-select.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+    <script>
+      $('select').foundationSelect();
+      $(document).foundation();
+      hljs.initHighlightingOnLoad();
+    </script>
     
   </body>
 </html>
