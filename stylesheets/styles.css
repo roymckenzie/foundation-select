@@ -3,6 +3,10 @@ pre code {
   line-height: 1.4rem;
 }
 
+input[type="reset"] {
+  margin-left: .5rem;
+}
+
 .view {
   text-align: center;
 }

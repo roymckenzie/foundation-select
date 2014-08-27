@@ -65,9 +65,24 @@
     }else{
       dropdown.find('li').removeClass('selected');
       Foundation.libs.dropdown.close($('#'+dropdown.find('ul').attr('id')));      
-      origDropdown.val(text);
+      origDropdown.val(value);
       $(this).toggleClass('selected');
       dropdown.find('.custom-dropdown-button').html(text);
+    console.log(text);
+    }
+  });
+
+  $(document).on('reset', 'form', function () {
+    if ($(this).children('.custom-dropdown-area').length) {
+      $(this).find('.custom-dropdown-area').each( function () {
+        origDropdown = $($(this).data('orig-select'));
+        dropdown = $(this);
+        multiple = dropdown.data('multiple') ? true : false;
+        prompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
+        dropdown.find('li').removeClass('selected');
+        dropdown.find('.custom-dropdown-button').html(prompt);
+
+      });
     }
   });
 
