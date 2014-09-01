@@ -7,6 +7,8 @@
 
       // If custom dropdowns haven't been drawn, build and insert them
       return this.each(function () {
+        selectPrompt = '';
+        selected = '';
         select = $(this);
         selectId = select.attr('id');
         multiple = false;
@@ -16,10 +18,15 @@
           selectPrompt = select.data('prompt');
           options = '<li class="disabled">' + selectPrompt + '</li>';
         } else {
-          selectPrompt = "Choose...";
+          selectPrompt = 'Choose...';
         }
-        select.find('option').each( function (index) {
-          options += '<li data-value="' + this.value + '"><span class="option-title">' + $(this).html() + '</span></li>'
+        select.find('option').each( function () {
+          if ($(this).attr('selected')) {
+            selected = 'selected';
+            selectPrompt = $(this).html();
+          }
+          options += '<li data-value="' + this.value + '" class="' + selected + '"><span class="option-title">' + $(this).html() + '</span></li>';
+          selected = '';
         });
         newButton = '<div class="custom-dropdown-area" data-orig-select="#' + selectId + '"' + (multiple ? ' data-multiple="true"' : '') + '><a href="#" data-dropdown="select-' + selectId + '" class="custom-dropdown-button">' + selectPrompt + '</a> \
         <ul id="select-' + selectId + '" class="f-dropdown custom-dropdown-options" data-dropdown-content> \
@@ -76,8 +83,20 @@
         origDropdown = $($(this).data('orig-select'));
         dropdown = $(this);
         multiple = dropdown.data('multiple') ? true : false;
-        prompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
         dropdown.find('li').removeClass('selected');
+        if (origDropdown.data('prompt')) {
+          prompt = origDropdown.data('prompt');
+        }else{
+          origDropdown.find('option').each( function () {
+            if ($(this).attr('selected')) {
+              prompt = $(this).html();
+              dropdown.find('li[data-value="' + this.value + '"]').addClass('selected');
+            }
+          });
+          if (prompt == '') {
+            prompt = 'Choose...';
+          }
+        }
         dropdown.find('.custom-dropdown-button').html(prompt);
       });
     }
