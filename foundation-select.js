@@ -1,5 +1,5 @@
 (function ( $ ) {
- 
+
   $.fn.foundationSelect = function() {
 
     // Check to see if custom dropdowns have already been drawn
@@ -23,9 +23,9 @@
         select.find('option').each( function () {
           if ($(this).attr('selected')) {
             selected = 'selected';
-            selectPrompt = $(this).html();
+            selectPrompt = "<div class='" + $(this).attr('class') + "'>" + $(this).html() + "</div>";
           }
-          options += '<li data-value="' + this.value + '" class="' + selected + '"><span class="option-title">' + $(this).html() + '</span></li>';
+          options += '<li data-value="' + this.value + '" class="' + $(this).attr('class') + ' ' + selected + '"><span class="option-title">' + $(this).html() + '</span></li>';
           selected = '';
         });
         newButton = '<div class="custom-dropdown-area" data-orig-select="#' + selectId + '"' + (multiple ? ' data-multiple="true"' : '') + '><a href="#" data-dropdown="select-' + selectId + '" class="custom-dropdown-button">' + selectPrompt + '</a> \
@@ -45,7 +45,7 @@
     }
     dropdown = $(this).closest('.custom-dropdown-area');
     multiple = dropdown.data('multiple') ? true : false;
-    text = $(this).find('.option-title').html();
+    text = "<div class='" + $(this).attr('class') + "'>" + $(this).find('.option-title').html() + "</div>";
     value = $(this).data('value');
     totalOptions = dropdown.find('li').not('.disabled').length;
     origDropdown = $(dropdown.data('orig-select'));
@@ -70,7 +70,7 @@
       }
     }else{
       dropdown.find('li').removeClass('selected');
-      Foundation.libs.dropdown.close($('#'+dropdown.find('ul').attr('id')));      
+      Foundation.libs.dropdown.close($('#'+dropdown.find('ul').attr('id')));
       origDropdown.val(value);
       $(this).toggleClass('selected');
       dropdown.find('.custom-dropdown-button').html(text);
