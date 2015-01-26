@@ -9,13 +9,14 @@
       return this.each(function () {
         selectPrompt = '';
         selected = '';
+        translateClasses = '';
         select = $(this);
         selectId = select.attr('id');
         multiple = false;
         multiple = select.prop('multiple') ? true : false;
         options = '';
         if (select.data('prompt')) {
-          selectPrompt = select.data('prompt');
+          selectPrompt = '<span class="default-label">' + select.data('prompt') + '</span>';
           options = '<li class="disabled">' + selectPrompt + '</li>';
         } else {
           selectPrompt = 'Choose...';
@@ -25,7 +26,10 @@
             selected = 'selected';
             selectPrompt = "<div class='" + $(this).attr('class') + "'>" + $(this).html() + "</div>";
           }
-          options += '<li data-value="' + this.value + '" class="' + $(this).attr('class') + ' ' + selected + '"><span class="option-title">' + $(this).html() + '</span></li>';
+          if( $(this).attr('class') ) {
+            translateClasses = $(this).attr('class') + ' ';
+          }
+          options += '<li data-value="' + this.value + '" class="' + translateClasses + selected + '"><span class="option-title">' + $(this).html() + '</span></li>';
           selected = '';
         });
         newButton = '<div class="custom-dropdown-area" data-orig-select="#' + selectId + '"' + (multiple ? ' data-multiple="true"' : '') + '><a href="#" data-dropdown="select-' + selectId + '" class="custom-dropdown-button">' + selectPrompt + '</a> \
