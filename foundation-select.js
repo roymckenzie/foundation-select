@@ -62,7 +62,7 @@
         selectedOptions.push($(this).data('value'));
         selectedTitles.push($(this).find('.option-title').html());
       });
-      origDropdown.val(selectedOptions);
+      origDropdown.val(selectedOptions).change();
       if (selectedOptions.length) {
         if (selectedOptions.length > 2) {
           dropdown.find('.custom-dropdown-button').html(selectedOptions.length + ' of ' + totalOptions + ' selected');
@@ -75,7 +75,7 @@
     }else{
       dropdown.find('li').removeClass('selected');
       Foundation.libs.dropdown.close($('#'+dropdown.find('ul').attr('id')));
-      origDropdown.val(value);
+      origDropdown.val(value).change();
       $(this).toggleClass('selected');
       dropdown.find('.custom-dropdown-button').html(text);
     }
