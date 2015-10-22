@@ -1,0 +1,37 @@
+{
+  "name": "foundation-select",
+  "description": "jQuery plugin for custom <select> inputs in Zurb Foundation 5 using Foundation Dropdowns plugin for compatibility.",
+  "version": "0.1.0",
+  "main": [
+    "foundation-select.js",
+    "foundation-select.css"
+  ],
+  "license": "MIT",
+  "ignore": [],
+  "keywords": [
+    "forms",
+    "select",
+    "multiselect",
+    "dropdown",
+    "input",
+    "ui",
+    "zurb",
+    "foundation"
+  ],
+  "authors": [
+    {
+      "name": "Roy McKenzie",
+      "url": "https://github.com/roymckenzie"
+    }
+  ],
+  "homepage": "http://roymckenzie.github.io/foundation-select/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roymckenzie/foundation-select"
+  },
+  "dependencies": {
+    "jquery": ">=1.4.4",
+    "foundation": "^5.0.0"
+  },
+  "devDependencies": []
+}
