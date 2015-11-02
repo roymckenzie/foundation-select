@@ -11,7 +11,12 @@
         selected = '';
         translateClasses = '';
         select = $(this);
-        selectId = select.attr('id');
+        if(typeof select.attr('id') == 'undefined') {
+          selectId = 'foundation-select-'+select.attr('name').replace('[','').replace(']','');
+          select.attr('id', selectId);
+        } else {
+          selectId = select.attr('id');
+        }
         multiple = false;
         multiple = select.prop('multiple') ? true : false;
         options = '';
