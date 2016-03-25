@@ -7,7 +7,7 @@
 
       // If custom dropdowns haven't been drawn, build and insert them
       return this.each(function () {
-        selectPrompt = '';
+        selectedText = '';
         selected = '';
         translateClasses = '';
         select = $(this);
@@ -15,9 +15,20 @@
         multiple = false;
         multiple = select.prop('multiple') ? true : false;
         options = '';
-        if (select.data('prompt')) {
+
+	    // check if a prompt is set
+        if (typeof select.data('prompt') !== 'undefined') {
+          var createOption = true;
+	      // When prompt is empty string use a non breaking space
+	      if(select.data('prompt') === '')  {
+		    select.data('prompt', '&nbsp;');
+		    createOption = false;
+	      }
           selectPrompt = '<span class="default-label">' + select.data('prompt') + '</span>';
-          options = '<li class="disabled">' + selectPrompt + '</li>';
+
+	      if(createOption) {
+		    options = '<li class="disabled">' + selectPrompt + '</li>';
+	      }
         } else {
           selectPrompt = 'Choose...';
         }
@@ -53,19 +64,32 @@
     value = $(this).data('value');
     totalOptions = dropdown.find('li').not('.disabled').length;
     origDropdown = $(dropdown.data('orig-select'));
-    prompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
+    prompt = origDropdown.data('prompt');
+	// Default prompt if not set
+	if(typeof prompt === 'undefined') {
+	  prompt = 'Choose...';
+	}
+
     if (multiple) {
       $(this).toggleClass('selected');
       selectedOptions = [];
       selectedTitles = [];
+	  selectedText = '{selected} of {total} selected';
       dropdown.find('.selected').each( function () {
         selectedOptions.push($(this).data('value'));
         selectedTitles.push($(this).find('.option-title').html());
       });
       origDropdown.val(selectedOptions).change();
+
+	  // Check if selected text is configured
+	  if(origDropdown.data('selectedText')) {
+	    selectedText = origDropdown.data('selected-text');
+	  }
       if (selectedOptions.length) {
         if (selectedOptions.length > 2) {
-          dropdown.find('.custom-dropdown-button').html(selectedOptions.length + ' of ' + totalOptions + ' selected');
+          dropdown
+	          .find('.custom-dropdown-button')
+	          .html(selectedText.replace('{selected}', selectedOptions.length).replace('{total}', totalOptions));
         }else{
           dropdown.find('.custom-dropdown-button').html(selectedTitles.join(', '));
         }
@@ -82,13 +106,13 @@
   });
 
   $(document).on('reset', 'form', function () {
-    if ($(this).children('.custom-dropdown-area').length) {
+    if ($(this).find('.custom-dropdown-area').length) {
       $(this).find('.custom-dropdown-area').each( function () {
         origDropdown = $($(this).data('orig-select'));
         dropdown = $(this);
         multiple = dropdown.data('multiple') ? true : false;
         dropdown.find('li').removeClass('selected');
-        if (origDropdown.data('prompt')) {
+        if (typeof origDropdown.data('prompt') !== 'undefined') {
           prompt = origDropdown.data('prompt');
         }else{
           origDropdown.find('option').each( function () {

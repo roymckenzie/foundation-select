@@ -1,0 +1,211 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Foundation-select by roymckenzie</title>
+
+	<link rel="stylesheet" href="http://roymckenzie.github.io/foundation-select/stylesheets/foundation.css"/>
+	<link rel="stylesheet" href="http://roymckenzie.github.io/foundation-select/stylesheets/styles.css"/>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+	<script src="http://roymckenzie.github.io/foundation-select/javascripts/vendor/modernizr.js"></script>
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" href="./foundation-select.css"/>
+
+	<style>
+		pre {
+			margin-bottom: 1.25rem;
+		}
+	</style>
+</head>
+
+<body>
+
+<div class="row">
+	<div class="medium-4 columns">
+		<header>
+			<h1>Foundation-select</h1>
+
+			<p>jQuery plugin for custom select inputs in Zurb Foundation 5 using Foundation Dropdowns plugin</p>
+
+			<p class="view"><a href="https://github.com/roymckenzie/foundation-select">View the Project on GitHub</a>
+			</p>
+
+			<ul>
+				<li><a href="https://github.com/roymckenzie/foundation-select/zipball/master">Download <strong>ZIP
+					File</strong></a></li>
+				<li><a href="https://github.com/roymckenzie/foundation-select/tarball/master">Download <strong>TAR
+					Ball</strong></a></li>
+				<li><a href="https://github.com/roymckenzie/foundation-select">View On <strong>GitHub</strong></a></li>
+			</ul>
+		</header>
+	</div>
+	<div class="medium-8 columns">
+
+		<section>
+
+			<h3>How To</h3>
+
+			<hr>
+
+			<p>Setting up custom <code>&lt;select&gt;</code>s with Foundation using <code>foundation-select.js</code> is
+				relatively easy.</p>
+
+			<h4>Step 1</h4>
+			<p>Include <code>foundation-select.css</code> in your <code>&lt;head&gt;</code></p>
+
+			<h4>Step 2</h4>
+			<p>Include <code>foundation-select.js</code> before your <code>&lt;/body&gt;</code></p>
+
+			<h4>Step 3</h4>
+			<p>Include <code class="js">$('select').foundationSelect();</code> before <code class="js">$(document).foundation();</code>
+			</p>
+
+			<h3>Examples</h3>
+
+			<hr>
+
+			<h4>Single selection &lt;select&gt; </h4>
+
+			<form>
+				<p>
+					<select id="single-bsg-pilot">
+						<option value="husker">Husker</option>
+						<option value="starbuck" selected>Starbuck</option>
+						<option value="hotdog">Hot Dog</option>
+						<option value="apollo">Apollo</option>
+					</select>
+					<input type="reset" class="button tiny">
+				</p>
+			</form>
+                <pre><code class="html">&lt;select id=&quot;single-bsg-pilot&quot;&gt;
+	                &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+	                &lt;option value=&quot;starbuck&quot; selected&gt;Starbuck&lt;/option&gt;
+	                &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+	                &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+	                &lt;/select&gt;</code></pre>
+
+
+			<h4>Single selection &lt;select&gt; with prompt</h4>
+
+			<form>
+				<p>
+					<select id="single-bsg-pilot-prompt" data-prompt="Choose the best BSG pilot">
+						<option value="husker">Husker</option>
+						<option value="starbuck">Starbuck</option>
+						<option value="hotdog">Hot Dog</option>
+						<option value="apollo">Apollo</option>
+					</select>
+					<input type="reset" class="button tiny">
+				</p>
+			</form>
+
+                <pre><code class="html">&lt;select
+	                id=&quot;single-bsg-pilot-prompt&quot;
+	                data-prompt=&quot;Choose the best BSG pilot&quot;
+	                &gt;
+	                &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+	                &lt;option value=&quot;starbuck&quot;&gt;Starbuck&lt;/option&gt;
+	                &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+	                &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+	                &lt;/select&gt;</code></pre>
+
+
+			<h4>Single selection &lt;select&gt; with empty prompt</h4>
+
+			<form>
+				<p>
+					<select id="single-bsg-pilot-empty-prompt" data-prompt>
+						<option value="husker">Husker</option>
+						<option value="starbuck">Starbuck</option>
+						<option value="hotdog">Hot Dog</option>
+						<option value="apollo">Apollo</option>
+					</select>
+					<input type="reset" class="button tiny">
+				</p>
+			</form>
+
+                <pre><code class="html">&lt;select
+	                id=&quot;single-bsg-pilot-empty-prompt&quot;
+	                data-prompt
+	                &gt;
+	                &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+	                &lt;option value=&quot;starbuck&quot;&gt;Starbuck&lt;/option&gt;
+	                &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+	                &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+	                &lt;/select&gt;</code></pre>
+
+
+			<h4>Multiple selection &lt;select&gt; with prompt</h4>
+
+			<form>
+				<p>
+					<select id="multiple-bsg-pilots" multiple data-prompt="Choose the top BSG pilots">
+						<option value="husker">Husker</option>
+						<option value="starbuck">Starbuck</option>
+						<option value="hotdog">Hot Dog</option>
+						<option value="apollo">Apollo</option>
+					</select>
+					<input type="reset" class="button tiny">
+				</p>
+			</form>
+
+            <pre><code class="html">&lt;select
+	            id=&quot;multiple-bsg-pilots&quot;
+	            multiple
+	            data-prompt=&quot;Choose the top BSG pilots&quot;
+	            &gt;
+	            &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+	            &lt;option value=&quot;starbuck&quot;&gt;Starbuck&lt;/option&gt;
+	            &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+	            &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+	            &lt;/select&gt;</code></pre>
+
+			<h4>Multiple selection &lt;select&gt; with custom selection text</h4>
+
+			<form>
+				<p>
+					<select id="multiple-bsg-pilots-selected-text" multiple data-selected-text="{selected} / {total}">
+						<option value="husker">Husker</option>
+						<option value="starbuck">Starbuck</option>
+						<option value="hotdog">Hot Dog</option>
+						<option value="apollo">Apollo</option>
+					</select>
+					<input type="reset" class="button tiny">
+				</p>
+			</form>
+
+            <pre><code class="html">&lt;select
+	            id=&quot;multiple-bsg-pilots-selected-text&quot;
+	            multiple
+	            data-selected-text=&quot;{selected} / {total}&quot;
+	            &gt;
+	            &lt;option value=&quot;husker&quot;&gt;Husker&lt;/option&gt;
+	            &lt;option value=&quot;starbuck&quot;&gt;Starbuck&lt;/option&gt;
+	            &lt;option value=&quot;hotdog&quot;&gt;Hot Dog&lt;/option&gt;
+	            &lt;option value=&quot;apollo&quot;&gt;Apollo&lt;/option&gt;
+	            &lt;/select&gt;</code></pre>
+
+
+		</section>
+	</div>
+</div>
+
+<script src="http://roymckenzie.github.io/foundation-select/javascripts/scale.fix.js"></script>
+<script src="http://roymckenzie.github.io/foundation-select/javascripts/vendor/jquery.js"></script>
+<script src="http://roymckenzie.github.io/foundation-select/javascripts/foundation.min.js"></script>
+<script src="./foundation-select.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+<script>
+	$('select').foundationSelect();
+	$(document).foundation();
+	hljs.initHighlightingOnLoad();
+</script>
+
+</body>
+
+</html>
