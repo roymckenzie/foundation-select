@@ -50,13 +50,9 @@
       return false;
     }
     dropdown = $(this).closest('.custom-dropdown-area');
-    multiple = dropdown.data('multiple') ? true : false;
-    text = "<div class='" + $(this).attr('class') + "'>" + $(this).find('.option-title').html() + "</div>";
-    value = $(this).data('value');
     totalOptions = dropdown.find('li').not('.disabled').length;
     origDropdown = $(dropdown.data('orig-select'));
-    prompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
-    if (multiple) {
+    if (dropdown.data('multiple')) {
       $(this).toggleClass('selected');
       selectedOptions = [];
       selectedTitles = [];
@@ -65,21 +61,20 @@
         selectedTitles.push($(this).find('.option-title').html());
       });
       origDropdown.val(selectedOptions).change();
-      if (selectedOptions.length) {
-        if (selectedOptions.length > 2) {
-          dropdown.find('.custom-dropdown-button').html(selectedOptions.length + ' of ' + totalOptions + ' selected');
-        }else{
-          dropdown.find('.custom-dropdown-button').html(selectedTitles.join(', '));
-        }
-      }else{
-        dropdown.find('.custom-dropdown-button').html(prompt);
+      if (!selectedOptions.length) {
+        selectPrompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
+      } else if (selectedOptions.length > 2) {
+        selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
+      } else {
+        selectPrompt = selectedTitles.join(', ');
       }
-    }else{
+      dropdown.find('.custom-dropdown-button').html(selectPrompt);
+    } else {
       dropdown.find('li').removeClass('selected');
       Foundation.libs.dropdown.close($('#'+dropdown.find('ul').attr('id')));
-      origDropdown.val(value).change();
+      origDropdown.val($(this).data('value')).change();
       $(this).toggleClass('selected');
-      dropdown.find('.custom-dropdown-button').html(text);
+      dropdown.find('.custom-dropdown-button').html("<div class='" + $(this).attr('class') + "'>" + $(this).find('.option-title').html() + "</div>");
     }
   });
 
