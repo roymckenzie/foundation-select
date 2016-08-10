@@ -13,6 +13,15 @@
         select = $(this);
         if(typeof select.attr('id') == 'undefined') {
           selectId = 'foundation-select-'+select.attr('name').replace('[','').replace(']','');
+          if($('#'+selectId).length) {
+            i = 1;
+            newSelectId = selectId+'-'+i;
+            while($('#'+newSelectId).length) {
+              i++;
+              newSelectId = selectId+'-'+i;
+            }
+            selectId = newSelectId;
+          }
           select.attr('id', selectId);
         } else {
           selectId = select.attr('id');
