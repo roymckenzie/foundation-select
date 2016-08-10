@@ -83,22 +83,22 @@
       $(this).find('.custom-dropdown-area').each( function () {
         origDropdown = $($(this).data('orig-select'));
         dropdown = $(this);
-        multiple = dropdown.data('multiple') ? true : false;
         dropdown.find('li').removeClass('selected');
-        if (origDropdown.data('prompt')) {
-          prompt = origDropdown.data('prompt');
-        }else{
-          origDropdown.find('option').each( function () {
-            if ($(this).attr('selected')) {
-              prompt = $(this).html();
-              dropdown.find('li[data-value="' + this.value + '"]').addClass('selected');
-            }
-          });
-          if (prompt == '') {
-            prompt = 'Choose...';
+        selectedTitles = [];
+        origDropdown.find('option').each( function () {
+          if ($(this).attr('selected')) {
+            selectedTitles.push($(this).html());
+            dropdown.find('li[data-value="' + $(this).val() + '"]').addClass('selected');
           }
+        });
+        if (!selectedTitles.length) {
+          selectPrompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
+        } else if (selectedTitles.length > 2) {
+          selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
+        } else {
+          selectPrompt = selectedTitles.join(', ');
         }
-        dropdown.find('.custom-dropdown-button').html(prompt);
+        dropdown.find('.custom-dropdown-button').html(selectPrompt);
       });
     }
   });
