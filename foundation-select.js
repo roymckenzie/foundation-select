@@ -7,37 +7,39 @@
 
       // If custom dropdowns haven't been drawn, build and insert them
       return this.each(function () {
-        selectPrompt = '';
-        selected = '';
-        translateClasses = '';
         select = $(this);
         selectId = select.attr('id');
-        multiple = false;
-        multiple = select.prop('multiple') ? true : false;
-        options = '';
-        if (select.data('prompt')) {
-          selectPrompt = '<span class="default-label">' + select.data('prompt') + '</span>';
-          options = '<li class="disabled">' + selectPrompt + '</li>';
-        } else {
-          selectPrompt = 'Choose...';
-        }
+        selectOptions = [];
+        selectedTitles = [];
         select.find('option').each( function () {
+          selectClasses = [];
           if ($(this).attr('selected')) {
-            selected = 'selected';
-            selectPrompt = "<div class='" + $(this).attr('class') + "'>" + $(this).html() + "</div>";
+            selectedTitles.push($(this).html());
+            selectClasses.push('selected');
           }
-          if( $(this).attr('class') ) {
-            translateClasses = $(this).attr('class') + ' ';
+          if ($(this).attr('class')) {
+            selectClasses.push($(this).attr('class'));
           }
-          options += '<li data-value="' + this.value + '" class="' + translateClasses + selected + '"><span class="option-title">' + $(this).html() + '</span></li>';
-          selected = '';
+          if ($(this).prop('disabled')) {
+            selectClasses.push('disabled');
+          }
+          selectOptions.push('<li data-value="' + $(this).val() + '" class="' + selectClasses.join(' ') + '"><span class="option-title">' + $(this).html() + '</span></li>');
         });
-        newButton = '<div class="custom-dropdown-area" data-orig-select="#' + selectId + '"' + (multiple ? ' data-multiple="true"' : '') + '><a href="#" data-dropdown="select-' + selectId + '" class="custom-dropdown-button">' + selectPrompt + '</a> \
+
+        if (!selectedTitles.length) {
+          selectPrompt = select.data('prompt') ? select.data('prompt') : 'Choose...';
+        } else if( selectedTitles.length > 2) {
+          selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
+        } else {
+          selectPrompt = selectedTitles.join(', ');
+        }
+
+        dropdown = '<div class="custom-dropdown-area" data-orig-select="#' + selectId + '"' + (select.prop('multiple') ? ' data-multiple="true"' : '') + '><a href="#" data-dropdown="select-' + selectId + '" class="custom-dropdown-button">' + selectPrompt + '</a> \
         <ul id="select-' + selectId + '" class="f-dropdown custom-dropdown-options" data-dropdown-content> \
-          ' + options + ' \
+          ' + selectOptions.join('') + ' \
         </ul></div>';
         select.hide();
-        select.after(newButton);
+        select.after(dropdown);
       });
     };
   };
