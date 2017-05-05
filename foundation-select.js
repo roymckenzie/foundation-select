@@ -61,12 +61,16 @@
         selectedTitles.push($(this).find('.option-title').html());
       });
       origDropdown.val(selectedOptions).change();
+
+      maxCharsCount = (dropdown.width() - 20) / 7;
+      joinedSelectedTitles = selectedTitles.join(', ');
+
       if (!selectedOptions.length) {
         selectPrompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
-      } else if (selectedOptions.length > 2) {
+      } else if (joinedSelectedTitles.length > maxCharsCount) {
         selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
       } else {
-        selectPrompt = selectedTitles.join(', ');
+        selectPrompt = joinedSelectedTitles;
       }
       dropdown.find('.custom-dropdown-button').html(selectPrompt);
     } else {
@@ -91,12 +95,16 @@
             dropdown.find('li[data-value="' + $(this).val() + '"]').addClass('selected');
           }
         });
+
+        maxCharsCount = (dropdown.width() - 20) / 7;
+        joinedSelectedTitles = selectedTitles.join(', ');
+
         if (!selectedTitles.length) {
           selectPrompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
-        } else if (selectedTitles.length > 2) {
+        } else if (joinedSelectedTitles.length > maxCharsCount) {
           selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
         } else {
-          selectPrompt = selectedTitles.join(', ');
+          selectPrompt = joinedSelectedTitles;
         }
         dropdown.find('.custom-dropdown-button').html(selectPrompt);
       });
