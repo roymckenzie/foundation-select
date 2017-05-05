@@ -26,12 +26,15 @@
           selectOptions.push('<li data-value="' + $(this).val() + '" class="' + selectClasses.join(' ') + '"><span class="option-title">' + $(this).html() + '</span></li>');
         });
 
+        maxCharsCount = (select.width() - 20) / 7;
+        joinedSelectedTitles = selectedTitles.join(', ');
+
         if (!selectedTitles.length) {
           selectPrompt = select.data('prompt') ? select.data('prompt') : 'Choose...';
-        } else if( selectedTitles.length > 2) {
+        } else if (joinedSelectedTitles.length > maxCharsCount) {
           selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
         } else {
-          selectPrompt = selectedTitles.join(', ');
+          selectPrompt = joinedSelectedTitles;
         }
 
         dropdown = '<div class="custom-dropdown-area" data-orig-select="#' + selectId + '"' + (select.prop('multiple') ? ' data-multiple="true"' : '') + '><a href="#" data-dropdown="select-' + selectId + '" class="custom-dropdown-button">' + selectPrompt + '</a> \
@@ -61,12 +64,16 @@
         selectedTitles.push($(this).find('.option-title').html());
       });
       origDropdown.val(selectedOptions).change();
+
+      maxCharsCount = (dropdown.width() - 20) / 7;
+      joinedSelectedTitles = selectedTitles.join(', ');
+
       if (!selectedOptions.length) {
         selectPrompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
-      } else if (selectedOptions.length > 2) {
+      } else if (joinedSelectedTitles.length > maxCharsCount) {
         selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
       } else {
-        selectPrompt = selectedTitles.join(', ');
+        selectPrompt = joinedSelectedTitles;
       }
       dropdown.find('.custom-dropdown-button').html(selectPrompt);
     } else {
@@ -91,12 +98,16 @@
             dropdown.find('li[data-value="' + $(this).val() + '"]').addClass('selected');
           }
         });
+
+        maxCharsCount = (dropdown.width() - 20) / 7;
+        joinedSelectedTitles = selectedTitles.join(', ');
+
         if (!selectedTitles.length) {
           selectPrompt = origDropdown.data('prompt') ? origDropdown.data('prompt') : 'Choose...';
-        } else if (selectedTitles.length > 2) {
+        } else if (joinedSelectedTitles.length > maxCharsCount) {
           selectPrompt = selectedTitles.length + ' of ' + selectOptions.length + ' selected';
         } else {
-          selectPrompt = selectedTitles.join(', ');
+          selectPrompt = joinedSelectedTitles;
         }
         dropdown.find('.custom-dropdown-button').html(selectPrompt);
       });
